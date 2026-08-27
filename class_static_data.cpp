@@ -4,53 +4,35 @@ using namespace std;
 class Student
 {
     string name;
-    int rollNo;
-public:
+    int roll;
     static int count;
-    Student(string n, int r)
+public:
+    void input()
     {
-        name = n;
-        rollNo = r;
+        cout << "Name and roll: ";
+        cin >> name >> roll;
         count++;
     }
     void display()
     {
-        cout << "Name: " << name << endl;
-        cout << "Roll No: " << rollNo << endl;
+        cout << name << " " << roll << endl;
+    }
+    static void showCount()
+    {
+        cout << "Objects created: " << count;
     }
 };
 int Student::count = 0;
 int main()
 {
-    int n, rollNo;
-    string name;
+    Student s1, s2;
 
-    cout << "Enter number of students: ";
-    cin >> n;
-    cin.ignore();
+    s1.input();
+    s2.input();
 
-    Student* students[n];
-    for (int i = 0; i < n; i++)
-    {
-        cout << "\nEnter name of student " << i + 1 << ": ";
-        getline(cin, name);
+    s1.display();
+    s2.display();
 
-        cout << "Enter roll number: ";
-        cin >> rollNo;
-        cin.ignore();
-
-        students[i] = new Student(name, rollNo);
-    }
-    cout << "\nStudent Details:\n";
-    for (int i = 0; i < n; i++)
-    {
-        students[i]->display();
-        cout << endl;
-    }
-    cout << "Total objects created: " << Student::count << endl;
-    for (int i = 0; i < n; i++)
-    {
-        delete students[i];
-    }
+    Student::showCount();
     return 0;
 }
